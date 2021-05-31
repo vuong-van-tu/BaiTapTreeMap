@@ -3,26 +3,38 @@ import java.util.*;
 
 
 public class CustomManager {
-    Map<Integer, Customer> map = null;
+    private Map<Integer, Customer> map = null;
+
+    public Map<Integer, Customer> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Integer, Customer> map) {
+        this.map = map;
+    }
 
     public CustomManager() {
         map = new HashMap<>();
         map.put(1, new Customer("Phong", 23, "th", "C032101"));
-        map.put(2, new Customer("Tú", 24, "hd", "C032102"));
+        map.put(2, new Customer("Thanh", 24, "hd", "C032102"));
         map.put(3, new Customer("Phương Anh", 28, "hn", "C032103"));
-        map.put(4, new Customer("Tú", 20, "hn", "C032105"));
-        map.put(5, new Customer("Chiến", 20, "hn", "C032104"));
+        map.put(4, new Customer("Tú", 19, "hn", "C032105"));
+        map.put(5, new Customer("Chiến", 32, "hn", "C032104"));
+        map.put(6, new Customer("Chương", 32, "hn", "C032105"));
     }
-
-
     public void addCus(int key, Customer customer) {
         map.put(key, customer);
     }
 
-    public void display() {
-        Set<Integer> keys = map.keySet();
-        for (Integer key : keys) {
-            System.out.println(key + ": " + map.get(key));
+    public void display(Map<Integer,Customer> disMap) {
+        if (!disMap.isEmpty()){
+            System.out.println("Danh sách:");
+            Set<Integer> keys = disMap.keySet();
+            for (Integer key : keys) {
+                System.out.println(key + ": " + disMap.get(key));
+            }
+        }else {
+            System.out.println("Danh sách rỗng!");
         }
     }
 
@@ -34,11 +46,7 @@ public class CustomManager {
     }
 
     public void deleteCus(int key) {
-        if (findCusKey(key) == -1) {
-            System.out.println("Không tìm thấy id");
-        } else {
             map.remove(findCusKey(key));
-        }
     }
 
     public Map<Integer,Customer> findByName(String name) {
@@ -60,12 +68,12 @@ public class CustomManager {
 
 
 
-    public Map<Integer,Customer> findByAge(int age) {
+    public Map<Integer,Customer> findByAge(int ageFirst, int ageLast) {
         List<Map.Entry<Integer, Customer>> entries = new ArrayList<>(map.entrySet());
         Map<Integer,Customer> listAge = new LinkedHashMap<>();
         int count = 0;
         for (Map.Entry<Integer, Customer> entry : entries) {
-            if (entry.getValue().getAge() == age) {
+            if (entry.getValue().getAge() >= ageFirst && entry.getValue().getAge()<=ageLast) {
                 listAge.put(entry.getKey(),entry.getValue());
                 count++;
             }
