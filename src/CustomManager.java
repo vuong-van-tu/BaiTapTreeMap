@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CustomManager {
     private Map<Integer, Customer> map = null;
-
+    ReaderCustom rc = new ReaderCustom();
     public Map<Integer, Customer> getMap() {
         return map;
     }
@@ -14,13 +14,8 @@ public class CustomManager {
     }
 
     public CustomManager() {
-        map = new HashMap<>();
-        map.put(1, new Customer("Phong", 23, "th", "C032101"));
-        map.put(2, new Customer("Thanh", 24, "hd", "C032102"));
-        map.put(3, new Customer("Phương Anh", 28, "hn", "C032103"));
-        map.put(4, new Customer("Tú", 19, "hn", "C032105"));
-        map.put(5, new Customer("Chiến", 32, "hn", "C032104"));
-        map.put(6, new Customer("Chương", 32, "hn", "C032105"));
+        map = rc.readerCustom("src/writeFile.csv");
+
     }
     public void addCus(int key, Customer customer) {
         map.put(key, customer);

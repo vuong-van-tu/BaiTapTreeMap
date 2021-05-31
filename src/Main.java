@@ -1,10 +1,13 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         CustomManager manager = new CustomManager();
+        WriterCustom writer = new WriterCustom();
         manager.display(manager.getMap());
+//        writer.writerCustomCSV("D:\\Demo\\writeFile.txt",manager.getMap());
         while (true) {
             System.out.println("================Menu===============");
             System.out.println("1. Thêm khách hàng");
@@ -13,6 +16,7 @@ public class Main {
             System.out.println("4. Xóa khách hàng");
             System.out.println("5. Sắp xếp");
             System.out.println("6. Sửa thông tin khách hàng");
+            System.out.println("7. In file CSV");
             System.out.println("0. Thoát");
             System.out.print("Nhập lựa chọn : ");
             int choice = sc.nextInt();
@@ -144,6 +148,9 @@ public class Main {
                     while (!manager.getMap().containsKey(editKey));
                     manager.editCus(editKey, themCus());
                     manager.display(manager.getMap());
+                    break;
+                case 7 :
+                    writer.writerCustomCSV("src/writeFile.csv",manager.getMap());
                     break;
                 case 0:
                     System.out.println("Bái bai :))");
