@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.security.Key;
 import java.util.*;
 
@@ -5,19 +6,28 @@ import java.util.*;
 public class CustomManager {
     private Map<Integer, Customer> map = null;
     ReaderCustom rc = new ReaderCustom();
+    WriterCustom writer = new WriterCustom();
+    private final String PATH = "src/writeFile.csv";
     public Map<Integer, Customer> getMap() {
         return map;
     }
 
     public void setMap(Map<Integer, Customer> map) {
         this.map = map;
-    }
 
+    }
+    public void printFile() throws IOException {
+        writer.writerCustomCSV(PATH,getMap());
+
+    }
     public CustomManager() {
-        map = rc.readerCustom("src/writeFile.csv");
-
+        try{
+            map = rc.readerCustom(PATH);
+        }catch (Exception e ){
+            map = new HashMap<>();
+        }
     }
-    public void addCus(int key, Customer customer) {
+    public void addCus(int key, Customer customer){
         map.put(key, customer);
     }
 

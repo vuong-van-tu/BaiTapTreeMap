@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WriterCustom {
-
-    CustomManager csm = new CustomManager();
     private static final String COMMA_DELIMITER = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
     public void writerCustomCSV(String fileName, Map<Integer, Customer> map) throws IOException {
